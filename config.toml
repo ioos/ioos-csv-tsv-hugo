@@ -1,0 +1,14 @@
+baseurl = "http://abirger.github.io/ioos-csv-tsv"
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+languageCode = "en-us"
+Title = "IOOS DMAC"
+[params]
+ Description = "CSV/TSV Encoding Convention"
+ Copyright = "(C) 2014 U.S. IOOS. Some rights reserved"
+
+
+	
+	
+ 

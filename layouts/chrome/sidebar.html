@@ -1,0 +1,30 @@
+<div class="sidebar">
+   	<p>  <img src="/ioos-csv-tsv/images/ioos_blue2.png" alt="ho-ho-ho"> </p> 
+
+	<div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>{{ .Site.Title }}</h1>
+      <p class="lead">
+      {{ with .Site.Params.Description }} {{.}} {{ else }}An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.{{end}}
+      </p>
+    </div>
+
+<!-- sidebar menu start-->
+    <ul class="sidebar-nav">
+      <li><a href="http://ioos.github.io">IOOS Home</a> </li>
+	  <li><a href="/ioos-csv-tsv/">CSV/TSV Convention Home</a> </li>
+      {{ range .Site.Menus.main }}
+        <li><a href="{{.Url}}"> {{ .Name }} </a></li>
+      {{end}}
+    </ul>
+<!-- sidebar menu end-->
+	
+
+	
+<!--
+   	<p>  <img src="../images/ioos_blue2.png" alt="ho-ho-ho" height="36" width="374"> </p> 
+
+	<p>{{ with .Site.Params.Copyright }}{{.}}{{ else }}&copy; {{.Now.Format "2006"}}. All rights reserved. {{end}}</p>
+-->  
+  </div>
+</div>
