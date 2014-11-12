@@ -158,7 +158,7 @@ _**NOTES**_:
         git checkout master README.md
 
     4. Add and commit that file
-        git add .
+        git add README.md
         git commit -m "INIT: initial commit on gh-pages branch"
 
     5. Push to remote gh-pages branch 
