@@ -1,6 +1,6 @@
 +++
 draft = false
-title = "List of SOS Tests"
+title = "IOOS CSV / TSV Encoding"
 subtitle = "IOOS Convention for observation data encoding in CSV/TSV"
 type = "post"
 date = 2014-08-04T08:10:23Z
