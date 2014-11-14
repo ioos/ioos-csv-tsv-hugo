@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Recent Content on IOOS DMAC </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://ioos.github.io/ioos-csv-tsv/index.xml/</link>
+    <language>en-us</language>
+    
+    
+    <updated>Mon, 04 Aug 2014 08:10:23 UTC</updated>
+    
+    <item>
+      <title>IOOS CSV / TSV Encoding</title>
+      <link>http://ioos.github.io/ioos-csv-tsv/doc/csv_tsv_encoding_wiki_v1_1_0/</link>
+      <pubDate>Mon, 04 Aug 2014 08:10:23 UTC</pubDate>
+      
+      <guid>http://ioos.github.io/ioos-csv-tsv/doc/csv_tsv_encoding_wiki_v1_1_0/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;This document describes the conventions used by the Integrated Ocean Observing System (IOOS) program to encode observation data as plain text Comma-Separated Values (CSV) or Tab-Separated Values (TSV).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;CSV means that the data are expressed as a sequence of multiple data values or metadata attributes separated by commas on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. CSV data can be thought of as an array of rows (one per line) and columns (one per value in each line).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;TSV means that the data are expressed as a sequence of multiple data values or metadata attributes separated by tabs (ASCII character 0x09) on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. TSV data can be thought of as an array of rows (one per line) and columns (one per value in each line).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This document applies to the following &lt;strong&gt;Data Value&lt;/strong&gt; types: &lt;strong&gt;Scalar&lt;/strong&gt;, &lt;strong&gt;Vector&lt;/strong&gt;, &lt;strong&gt;Multivalue&lt;/strong&gt;, and &lt;strong&gt;Spectral&lt;/strong&gt;. This document applies to the following &lt;strong&gt;Sampling Feature&lt;/strong&gt; types: &lt;strong&gt;Point&lt;/strong&gt;, &lt;strong&gt;Vertical Profile&lt;/strong&gt;, &lt;strong&gt;Horizontal Profile&lt;/strong&gt;, &lt;strong&gt;2D Trajectory&lt;/strong&gt;, &lt;strong&gt;3D Trajectory&lt;/strong&gt;, and &lt;strong&gt;Collection&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;NOTES:&lt;/strong&gt;&lt;/em&gt;&lt;br /&gt;
+ &lt;em&gt;1. This document does not address conventions for reporting multiple phenomena from different sensors from a single station in a single response. This remains an area to be discussed.&lt;/em&gt;
+ &lt;em&gt;2. This document does not discuss other sampling feature types including regular grids, irregular grids, unstructured grids, or volumetric data. IOOS does not encode such data as CSV or TSV — instead, the binary NetCDF format with CF conventions is used.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;The described conventions are intended to be applied by the IOOS Sensor Observation Service (SOS) instances, but could be used to transmit and store CSV- or TSV-encoded data from other sources as well.&lt;/em&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Revision History&lt;/h1&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Date&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1.0.0&lt;/td&gt;
+&lt;td&gt;Original versions of separate CSV and TSV encoding specifications.&lt;/td&gt;
+&lt;td&gt;2010-06-09&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1.0.0b&lt;/td&gt;
+&lt;td&gt;Both CSV and TSV specifications: minor editing; no change to specifications.&lt;/td&gt;
+&lt;td&gt;2010-07-20&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1.0.0c&lt;/td&gt;
+&lt;td&gt;Both CSV and TSV specifications: update sample URLs to use production server instead of test server.&lt;/td&gt;
+&lt;td&gt;2010-12-20&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1.0.1&lt;/td&gt;
+&lt;td&gt;CSV specification: update Section 2.2 to use the MIME type &amp;lsquo;text/csv&amp;rsquo; instead of &amp;lsquo;text/csv;header=true&amp;rsquo; to reflect common practice and the examples in the document.&lt;/td&gt;
+&lt;td&gt;2011-01-14&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1.1.0&lt;/td&gt;
+&lt;td&gt;First version of the combined CSV and TSV encoding specification; minor editing to align the documents and encoding examples in the document.&lt;/td&gt;
+&lt;td&gt;2012-01-16&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;General Encoding Conventions&lt;/h1&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;Basic Structure and Conformance with RFC 4180&lt;/h2&gt;
+
+&lt;p&gt;IOOS CSV responses shall use the basic structure defined in IETF RFC 4180, &amp;ldquo;Common Format and MIME Type for Comma-Separated Values (CSV) Files&amp;rdquo; (Shafranovich, 2005), including:
+ -  a line break (CR/LF) between each line;
+ -  a comma between each value;
+ -  two commas in a row for a missing value;
+ -  no comma after the last value, unless the last value is missing in which case the preceding comma is retained;
+ -  space characters within each field are significant; do not add a space after each comma;
+ -  double quotes around values that contain commas, spaces, line breaks or double quotes (escaped as &amp;ldquo;&amp;rdquo;). Optionally, double quotes may be added around other values.&lt;/p&gt;
+
+&lt;p&gt;IOOS TSV responses shall use the basic structure similar to the CSV responses:
+ -  a line break (CR/LF) between each line;
+ -  a TAB between each value;
+ -  no TABs permitted in any value;
+ -  two TABs in a row to designate a missing value;
+ -  no TAB after the last value, unless the last value is missing in which case the preceding TAB is retained;
+ -  all characters within a value are significant (including spaces, commas, and quotes).&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_3&#34;&gt;MIME Types&lt;/h2&gt;
+
+&lt;p&gt;The MIME type of the response shall be indicated by the originating server using the HTTP Content-Type header.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
+The NDBC SOS server is presently using the HTTP Content-Disposition header to specify a filename and open a dialog box. IOOS is considering conventions to make the resulting filename more reflective of the phenomenon, procedure and time of the data inside.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The MIME type of an IOOS CSV response shall be as defined in RFC 4180 (the optional parameter &lt;em&gt;&lt;strong&gt;header=present&lt;/strong&gt;&lt;/em&gt; suggested by RFC 4180 is not used. IOOS CSV responses shall contain column headers as described in &lt;a href=&#34;#Header_row_and_initial_columns&#34;&gt;Header row and initial columns&lt;/a&gt; below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     text/csv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;IOOS TSV files shall use the MIME type registered with the Internet Assigned Numbers Authority &lt;a href=&#34;http://www.iana.org/assignments/media-types/text/tab-separated-values&#34;&gt;IANA-2010, &amp;ldquo;Tab-Separated Values&amp;rdquo;&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     text/tab-separated-values
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&#34;Compression&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_4&#34;&gt;Compression&lt;/h2&gt;
+
+&lt;p&gt;IOOS servers shall offer uncompressed CSV or TSV. Though not required, servers may offer compressed CSV or TSV as well (using gzip, ZIP, etc.). If the CSV or TSV result is compressed the originating server shall indicate this fact using the HTTP Content-Encoding header. Clients should use the HTTP Accept-Encoding mechanism to request compression if desired, being prepared to handle either compressed or uncompressed responses.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_5&#34;&gt;Number and order of values&lt;/h2&gt;
+
+&lt;p&gt;Every line in a given CSV or TSV response shall have the same number and order of values, with missing values indicated by an empty field (two commas or tabs respectively) or by agreed-upon terms to indicate missing information (e.g., &lt;strong&gt;missing&lt;/strong&gt; or &lt;strong&gt;N/A&lt;/strong&gt; or &lt;strong&gt;NULL&lt;/strong&gt;) in some cases.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;Header_row_and_initial_columns&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_6&#34;&gt;Header row and initial columns&lt;/h2&gt;
+
+&lt;p&gt;The content of this section implies that all data values in a given row are from the same station, sensor, location and time.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_7&#34;&gt;CSV Encoding&lt;/h3&gt;
+
+&lt;p&gt;The first line of every IOOS CSV response shall comprise a list of column headers that provide names for the values in the following rows. If a value has a unit, it shall be specified in parentheses after the column name. This line is known as the &lt;strong&gt;header row&lt;/strong&gt;. All other lines are referred to as &lt;strong&gt;data rows&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (m)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The initial fields of each data row shall provide values for these quantities as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;station_id / sensor_id&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;URNs as defined in the &lt;a href=&#34;http://ioos.github.io/conventions-for-observing-asset-identifiers&#34;&gt;IOOS Conventions for Observing Asset Identifiers&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;latitude / longitude&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Latitude and longitude in decimal degrees.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;date_time&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Date and time in ISO 8601 format with punctuation (normally yyyy-mm-ddThh:mm:ssZ, with variations for non-specific times, e.g. climatological average of temperature in August regardless of year).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;depth&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Depth in meters, positive below the surface of the water.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_8&#34;&gt;TSV Encoding&lt;/h3&gt;
+
+&lt;p&gt;The first line of every IOOS TSV response shall comprise a list of column headers that provide names for the values in the following rows separated by a single tab. If a value has a unit, it shall be specified in square brackets [] at the end of the column name (no text is permitted after the closing bracket). This line is known as the &lt;strong&gt;header row.&lt;/strong&gt; All other lines are referred to as &lt;strong&gt;data rows&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61   sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]   time_ISO8601   depth [m]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The initial fields of each data row shall provide values for these quantities as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;station_id:METAVAR:TEXT:61 / sensor_id:METAVAR:TEXT:61&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;represent the &lt;strong&gt;station_id&lt;/strong&gt; and &lt;strong&gt;sensor_id&lt;/strong&gt; with URNs as defined in the &lt;a href=&#34;http://ioos.github.io/conventions-for-observing-asset-identifiers&#34;&gt;IOOS Conventions for Observing Asset Identifiers&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
+These fields are named to provide consistency with ODV tools.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;latitude / longitude&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Latitude and longitude in decimal degrees relative to World Geodetic System 1984 (WGS84) coordinate reference system (CRS ID = &lt;strong&gt;urn:ogc:def:crs:epsg::4326&lt;/strong&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;time_ISO8601&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Date and time in ISO 8601 format with punctuation (normally &lt;strong&gt;yyyy-mm-ddThh:mm:ssZ&lt;/strong&gt;, with variations for non-specific times, e.g. climatological average of temperature in August regardless of     year).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;depth&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Depth in meters, positive below the surface of the water.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;toc_9&#34;&gt;Phenomenon-specific columns&lt;/h2&gt;
+
+&lt;p&gt;As discussed in &lt;a href=&#34;#Conventions_for_Specific_Observed_Properties&#34;&gt;Conventions for Specific Observed Properties&lt;/a&gt; below, the remaining fields will depend on the phenomenon, data value type, and sampling feature types. In order to ensure compatibility of CSV and TSV encodings from different servers, the ordering of some mandatory fields for each will be specified in this document for various phenomena. Data providers may offer additional fields after the mandatory fields; their order is not specified here but a name shall be provided for every column in the CSV or TSV response.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_10&#34;&gt;Use of CF Names&lt;/h2&gt;
+
+&lt;p&gt;In the header row, names of data values shall use the &lt;a href=&#34;http://cf-pcmdi.llnl.gov/documents/cf-standard-names/standard-name-table/12/cf-standard-name-table.html&#34;&gt;Climate and Forecast (CF) Standard Names&lt;/a&gt; where possible. The units of the quantity are not required to be the same as the &amp;ldquo;canonical&amp;rdquo; CF unit as long as there is a well-known conversion formula from the specified units to the canonical units. Example: The canonical unit of Temperature in CF is Kelvin, but data may be reported in Celsius.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_11&#34;&gt;Time-dependent metadata&lt;/h2&gt;
+
+&lt;p&gt;Some types of data may include time-dependent metadata associated with each measurement. Example: data on ocean currents that includes pitch, roll and yaw information for the sensor. The general practice shall be to place the principal data values first in each data row, followed by any associated time-dependent metadata.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_12&#34;&gt;Result Size&lt;/h2&gt;
+
+&lt;p&gt;IOOS does not impose limits on the number of lines in the CSV or TSV response or values on each line. However, it is good to remember that common spreadsheet applications have a limit of 256 values per row and 65536 rows per sheet.&lt;/p&gt;
+
+&lt;p&gt;The CSV as well as TSV response may be compressed (see above under &lt;a href=&#34;#Compression&#34;&gt;Compression&lt;/a&gt; to minimize transmitted file size.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_13&#34;&gt;Empty Dataset&lt;/h2&gt;
+
+&lt;p&gt;A CSV or TSV response to a valid request that yielded no data at all (e.g., time range or bounding box did not match any stations) shall contain a header row and zero data rows.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
+This approach differs from the handling of empty datasets in the IOOS GML case. There, if no data corresponds to a query, an OGC Web Service Exception is returned (i.e., a brief XML document explaining     the nature of the problem). The Empty Dataset response proposed here means these CSV and TSV conventions could be applied regardless of whether the data are served by SOS or obtained through other means.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;toc_14&#34;&gt;Sort Order&lt;/h2&gt;
+
+&lt;p&gt;Data from multiple times from a single station shall be sorted in order from earliest time to latest time.&lt;/p&gt;
+
+&lt;p&gt;Data from multiple depths from a single station shall be sorted in order from shallowest to deepest.&lt;/p&gt;
+
+&lt;p&gt;Data from multiple stations shall group data from each station together. No ordering is imposed for the station listing. A suggested practice is to sort by ascending &lt;strong&gt;station_id&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Sorting of data from multiple stations, times and depths shall be as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;All data from a single station is grouped.&lt;/li&gt;
+&lt;li&gt;Data from that station shall be in time order.&lt;/li&gt;
+&lt;li&gt;All depths from that time shall be presented in order.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Conceptual illustration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   Data from Station 1 at time 1 and depth 1
+   Data from Station 1 at time 1 and depth 2
+   Data from Station 1 at time 2 and depth 1  
+   Data from Station 1 at time 2 and depth 2
+   Data from Station 2 at time 1 and depth 1
+   Data from Station 2 at time 1 and depth 2
+   Data from Station 2 at time 2 and depth 1
+   Data from Station 2 at time 2 and depth 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&#34;Conventions_for_Specific_Observed_Properties&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_15&#34;&gt;Conventions for Specific Observed  Properties&lt;/h1&gt;
+
+&lt;p&gt;In the following, the order and title of each IOOS mandatory column is specified. All mandatory columns must be included (with a null value if needed).&lt;/p&gt;
+
+&lt;p&gt;Any IOOS optional columns are listed next, and if used shall be placed after the mandatory columns. If any IOOS optional columns are used, they must be in the same order as specified here. If only some of the IOOS optional columns are used, then at least the first optional column and all columns up to and including the last column needed must be provided (with nulls as appropriate). A trailing set of one or more empty columns can be omitted. (In other words, do not omit columns that are not needed between columns that are needed&amp;ndash;instead, put in a column(s) of nulls.)&lt;/p&gt;
+
+&lt;p&gt;Header fields shall use the column names specified below. The names are based on the CF (Climate and Forecast) Standard Names where possible.&lt;/p&gt;
+
+&lt;p&gt;Data providers may add additional provider-specific columns. However, if so then all the IOOS optional columns must be included (with nulls as needed) and the provider-specific columns placed after.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
+A generic document should probably be written for &amp;ldquo;scalars&amp;rdquo; and &amp;ldquo;vectors&amp;rdquo; at &amp;ldquo;points&amp;rdquo; and &amp;ldquo;profiles,&amp;rdquo; omitting conventions for specific observed properties. However, because column order is  important for quantities with multiple data and metadata values on each row, it is difficult to write a general treatment without considering specific phenomena.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;toc_16&#34;&gt;Temperature&lt;/h2&gt;
+
+&lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_water_temperature (C)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IOOS Optional fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;none&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
+CF canonical units are K (degrees Kelvin) for temperature. IOOS uses C (degrees Celsius).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:41012&amp;amp;observedproperty=Sea_Water_Temperature&amp;amp;responseformat=text/csv&#34;&gt;Sample CSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id,sensor_id,latitude (degree),longitude (degree),date_time,&amp;quot;depth (m)&amp;quot;,&amp;quot;sea_water_temperature (C)&amp;quot;
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::watertemp1:,30.04,-80.55,2008-08-01T00:50:00Z,0.60,27.70
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::watertemp1:,30.04,-80.55,2008-08-01T01:50:00Z,0.60,27.70
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::watertemp1:,30.04,-80.55,2008-08-01T02:50:00Z,0.60,27.60
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:41012&amp;amp;observedproperty=Sea_Water_Temperature&amp;amp;responseformat=text/tab-separated-values&#34;&gt;Sample TSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61   sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]  time_ISO8601    depth [m]   sea_water_temperature [C]
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::watertemp1:  30.04   -80.55  2008-08-01T00:50:00Z    0.60    27.70
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::watertemp1:  30.04   -80.55  2008-08-01T01:50:00Z    0.60    27.70
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::watertemp1:  30.04   -80.55  2008-08-01T02:50:00Z    0.60    27.60  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;toc_17&#34;&gt;Salinity&lt;/h2&gt;
+
+&lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_water_salinity (psu)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IOOS Optional fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;none&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:41012&amp;amp;observedproperty=Sea_Water_Salinity&amp;amp;responseformat=text/csv&#34;&gt;Sample CSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id,sensor_id,latitude (degree),longitude (degree),date_time,&amp;quot;depth (m)&amp;quot;,&amp;quot;sea_water_salinity (psu)&amp;quot;
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::ct1:,30.04,-80.55,2008-08-01T00:50:00Z,1.00,36.25
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::ct1:,30.04,-80.55,2008-08-01T01:50:00Z,1.00,36.25
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::ct1:,30.04,-80.55,2008-08-01T02:50:00Z,1.00,36.25
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:41012&amp;amp;observedproperty=Sea_Water_Salinity&amp;amp;responseformat=text/tab-separated-values&#34;&gt;Sample TSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61  sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]  time_ISO8601    depth [m]   sea_water_salinity [psu]     
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::ct1: 30.04   -80.55  2008-08-01T00:50:00Z    1.00    36.25     
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::ct1: 30.04   -80.55  2008-08-01T01:50:00Z    1.00    36.25     
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::ct1: 30.04   -80.55  2008-08-01T02:50:00Z    1.00    36.25
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;toc_18&#34;&gt;Sea Floor Depth (Tsunameter Water Level)&lt;/h2&gt;
+
+&lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_floor_depth_below_sea_surface (m)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IOOS Optional fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;averaging interval (s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:46403&amp;amp;observedproperty=sea_floor_depth_below_sea_surface&amp;amp;responseformat=text/csv&#34;&gt;Sample CSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id,sensor_id,latitude (degree),longitude (degree),date_time,&amp;quot;sea_floor_depth_below_sea_surface (m)&amp;quot;,&amp;quot;averaging_interval (s)&amp;quot;     
+
+urn:ioos:station:wmo:46403:,urn:ioos:sensor:wmo:46403::tsunameter0:,52.65,-156.94,2008-07-17T00:00:00Z,4509.488,900     
+
+urn:ioos:station:wmo:46403:,urn:ioos:sensor:wmo:46403::tsunameter0:,52.65,-156.94,2008-07-17T00:15:00Z,4509.464,900     
+
+urn:ioos:station:wmo:46403:,urn:ioos:sensor:wmo:46403::tsunameter0:,52.65,-156.94,2008-07-17T00:30:00Z,4509.435,900
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:46403&amp;amp;observedproperty=sea_floor_depth_below_sea_surface&amp;amp;responseformat=text/tab-separated-values&#34;&gt;Sample TSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61  sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]  time_ISO8601    sea_floor_depth_below_sea_surface [m]   averaging_interval [s]     
+
+urn:ioos:station:wmo:46403: urn:ioos:sensor:wmo:46403::tsunameter0: 52.65   -156.94 2008-07-17T00:00:00Z    4509.488    900
+
+urn:ioos:station:wmo:46403: urn:ioos:sensor:wmo:46403::tsunameter0: 52.65   -156.94 2008-07-17T00:15:00Z    4509.464    900
+
+urn:ioos:station:wmo:46403: urn:ioos:sensor:wmo:46403::tsunameter0: 52.65   -156.94 2008-07-17T00:30:00Z    4509.435    900
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;toc_19&#34;&gt;Water Surface Height (Tide Gauge Water Level)&lt;/h2&gt;
+
+&lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;water_surface_height_above_reference_datum (m)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;datum_id&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IOOS Optional fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;none&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
+The &lt;strong&gt;datum_id&lt;/strong&gt; is an identifier for the vertical datum to which the water-level measurements are referenced.  Values presently in use at IOOS are:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;urn:x-noaa:def:datum:noaa::IGLD (International Great Lakes Datum)&lt;/em&gt;
+&lt;em&gt;urn:x-noaa:def:datum:noaa::MHW (mean high water)&lt;/em&gt;
+&lt;em&gt;urn:x-noaa:def:datum:noaa::MLLW (mean lower low water)&lt;/em&gt;
+&lt;em&gt;urn:x-noaa:def:datum:noaa::MSL (mean sea level)&lt;/em&gt;
+&lt;em&gt;urn:ogc:def:datum:epsg::5103 (North American Vertical Datum 1988)&lt;/em&gt;
+&lt;em&gt;urn:x-noaa:def:datum:noaa::STND (station datum&amp;ndash;values are referenced only to local station)&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tbd&#34;&gt;Sample CSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id,sensor_id,latitude (degree),longitude (degree),date_time,&amp;quot;water_surface_height_above_reference_datum (m)&amp;quot;,datum_id
+
+urn:x-noaa:def:station:NOAA.NOS.CO-OPS::1617433, urn:x-noaa:def:sensor:NOAA.NOS.CO-OPS::1617433:A1,20.03658,-155.82936, 2010-03-02T13:48:00Z,0.432,urn:x-noaa:def:datum:noaa::MLLW
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tbd&#34;&gt;Sample TSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61  sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]  time_ISO8601    water_surface_height_above_reference_datum [m]  datum_id
+
+urn:x-noaa:def:station:NOAA.NOS.CO-OPS::1617433  urn:x-noaa:def:sensor:NOAA.NOS.CO-OPS::1617433:A1  20.03658    -155.82936   2010-03-02T13:48:00Z   0.432   urn:x-noaa:def:datum:noaa::MLLW
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;toc_20&#34;&gt;Winds&lt;/h2&gt;
+
+&lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;wind_from_direction (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;wind_speed (m/s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;wind_speed_of_gust (m/s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;upward_air_velocity (m/s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IOOS Optional fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;none&lt;/em&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
+The &lt;strong&gt;depth&lt;/strong&gt; value in the wind response is negative, because depth is positive below the water surface whereas the wind sensor is above the water.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:41012&amp;amp;observedproperty=Winds&amp;amp;responseformat=text/csv&#34;&gt;Sample CSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id,sensor_id,latitude (degree),longitude (degree),date_time,&amp;quot;depth (m)&amp;quot;,&amp;quot; wind_from_direction (degree)&amp;quot;,&amp;quot;wind_speed (m/s)&amp;quot;,&amp;quot; wind_speed_of_gust (m/s)&amp;quot;,&amp;quot; upward_air_velocity(m/s)&amp;quot;
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::anemometer1:,30.04,-80.55,2008-08-01T00:50:00Z,-5.00,239.0,9.00,10.50
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::anemometer1:,30.04,-80.55,2008-08-01T01:50:00Z,-5.00,234.0,8.30,9.30
+
+urn:ioos:station:wmo:41012:,urn:ioos:sensor:wmo:41012::anemometer1:,30.04,-80.55,2008-08-01T02:50:00Z,-5.00,241.0,8.90,10.90
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:41012&amp;amp;observedproperty=Winds&amp;amp;responseformat=text/tab-separated-values&#34;&gt;Sample TSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61  sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]  time_ISO8601    depth [m]    wind_from_direction [degree]   wind_speed [m/s]     wind_speed_of_gust [m/s]    upward_air_velocity [m/s]
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::anemometer1: 30.04   -80.55  2008-08-01T00:50:00Z    -5.00   239.0   9.00    10.50
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::anemometer1: 30.04   -80.55  2008-08-01T01:50:00Z    -5.00   234.0   8.30    9.30
+
+urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::anemometer1: 30.04   -80.55  2008-08-01T02:50:00Z    -5.00   241.0   8.90    10.90
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;toc_21&#34;&gt;Currents&lt;/h2&gt;
+
+&lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;direction_of_sea_water_velocity (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_water_speed (cm/s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;upward_sea_water_velocity (cm/s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IOOS Optional fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Error Velocity (cm/s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;platform_orientation (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;platform_pitch_angle (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;platform_roll_angle (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_water_temperature &amp;copy;&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Pct Good 3 Beam (%)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Pct Good 4 Beam (%)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Pct Rejected (%)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Pct Bad (%)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Echo Intensity Beam1 (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Echo Intensity Beam2 (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Echo Intensity Beam3 (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Echo Intensity Beam4 (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Correlation Magnitude Beam1 (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Correlation Magnitude Beam2 (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Correlation Magnitude Beam3 (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Correlation Magnitude Beam4 (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Quality Flags&lt;/strong&gt;&lt;/em&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTES:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CF canonical units are &lt;strong&gt;m/s&lt;/strong&gt; for the current speed quantities. IOOS uses &lt;strong&gt;cm/s&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;The Quality Flags are packed together in a single semicolon-delimited string. The meaning of the quality flags for a particular sensor would be described in metadata (such as might be obtained using the SOS &lt;strong&gt;DescribeSensor&lt;/strong&gt; operation).&lt;/li&gt;
+&lt;li&gt;NDBC currents from MMS stations are the only dataset for which we have quality flags at present. This is a topic for further discussion, especially in the case of differing quality flags for the same phenomenon measured by different models of sensor (or post-processed by different quality-control procedures).&lt;/li&gt;
+&lt;li&gt;In the sample dataset and sample response below, there are 9 quality flags representing the results of the following quality tests based on their position (left to right) in the flags field:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Flag 1&lt;/strong&gt; represents the overall bin status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flag 2&lt;/strong&gt; represents the ADCP Built-In Test (BIT) status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flag 3&lt;/strong&gt; represents the Error Velocity test status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flag 4&lt;/strong&gt; represents the Percent Good test status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flag 5&lt;/strong&gt; represents the Correlation Magnitude test status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flag 6&lt;/strong&gt; represents the Vertical Velocity test status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flag 7&lt;/strong&gt; represents the North Horizontal Velocity test status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flag 8&lt;/strong&gt; represents the East Horizontal Velocity test status.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flag 9&lt;/strong&gt; represents the Echo Intensity test status.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Valid flag values are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;0&lt;/strong&gt; = quality not evaluated;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1&lt;/strong&gt; = failed quality test; &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2&lt;/strong&gt; = questionable or suspect data;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3&lt;/strong&gt; = good data/passed quality test; and&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;9&lt;/strong&gt; = missing data.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These flag meanings and values do not necessarily apply to any other ocean currents data.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;WARNING:&lt;/strong&gt; &amp;gt;
+The flags defined above have not been vetted with the QARTOD flagging scheme.  In a future update of this manual the flagging guidelines will be removed and instead the QARTOD scheme will be adopted.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:42361&amp;amp;observedproperty=Currents&amp;amp;responseformat=text/csv&#34;&gt;Sample CSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id,sensor_id,latitude (degree),longitude (degree),date/time,&amp;quot;bin (count)&amp;quot;,&amp;quot;depth (m)&amp;quot;,&amp;quot;direction_of_sea_water_velocity (degree)&amp;quot;,&amp;quot;sea_water_speed (cm/s)&amp;quot;,&amp;quot;upward_sea_water_velocity (cm/s)&amp;quot;,&amp;quot;error_velocity (cm/s)&amp;quot;,platform_orientation (degree),&amp;quot;platform_pitch_angle (degree)&amp;quot;,&amp;quot;platform_roll_angle (degree),&amp;quot;sea_water_temperature (c)&amp;quot;,&amp;quot;pct_good_3_beam (%)&amp;quot;,&amp;quot;pct_good_4_beam (%)&amp;quot;,&amp;quot;pct_rejected (%)&amp;quot;,&amp;quot;pct_bad (%)&amp;quot;,&amp;quot;echo_intensity_beam1 (count)&amp;quot;,&amp;quot;echo_intensity_beam2 (count)&amp;quot;,&amp;quot;echo_intensity_beam3 (count)&amp;quot;,&amp;quot;echo_intensity_beam4 (count)&amp;quot;,&amp;quot;correlation_magnitude_beam1 (count)&amp;quot;,&amp;quot;correlation_magnitude_beam2 (count)&amp;quot;,&amp;quot;correlation_magnitude_beam3 (count)&amp;quot;,&amp;quot;correlation_magnitude_beam4 (count)&amp;quot;,&amp;quot;quality_flags&amp;quot;     
+
+urn:ioos:station:wmo:42361:,urn:ioos:sensor:wmo:42361::adcp0:,27.55,-92.49,2010-03-02T16:03Z,1,51.00,292,16.2,-2.0,0.5,,,,,99,99,99,,205,195,215,202,,,,,3;3;3;3;9;3;3;3;0     
+
+urn:ioos:station:wmo:42361:,urn:ioos:sensor:wmo:42361::adcp0:,27.55,-92.49,2010-03-02T16:03Z,2,67.00,305,23.7,-0.5,-0.5,,,,,99,99,99,,194,183,198,190,,,,,3;3;3;3;9;3;3;3;0     
+
+urn:ioos:station:wmo:42361:,urn:ioos:sensor:wmo:42361::adcp0:,27.55,-92.49,2010-03-02T16:03Z,3,83.00,317,19.8,-0.5,-1.0,,,,,99,99,99,,202,170,216,172,,,,,3;3;3;3;9;3;3;3;0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:42361&amp;amp;observedproperty=Currents&amp;amp;responseformat=text/tab-separated-values&#34;&gt;Sample TSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61  sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]  time_ISO8601    bin [count] depth [m]   direction_of_sea_water_velocity [degree]    sea_water_speed [cm/s]  upward_sea_water_velocity [cm/s]    error_velocity [cm/s]   platform_orientation [degree]   platform_pitch_angle [degree]   platform_roll_angle [degree]    sea_water_temperature [c]   pct_good_3_beam [%] pct_good_4_beam [%] pct_rejected [%]    pct_bad [%] echo_intensity_beam1 [count]    echo_intensity_beam2 [count]    echo_intensity_beam3 [count]    echo_intensity_beam4 [count]    correlation_magnitude_beam1 [count] correlation_magnitude_beam2 [count] correlation_magnitude_beam3 [count] correlation_magnitude_beam4 [count] quality_flags     
+
+urn:ioos:station:wmo:42361: urn:ioos:sensor:wmo:42361::adcp0:   27.55   -92.49  2010-03-02T16:03Z   1   51.00   292 16.2    -2.0    0.5                 99  99  99      205 195 215 202                 3;3;3;3;9;3;3;3;0     
+
+urn:ioos:station:wmo:42361: urn:ioos:sensor:wmo:42361::adcp0:   27.55   -92.49  2010-03-02T16:03Z   2   67.00   305 23.7    -0.5    -0.5                    99  99  99      194 183 198 190                 3;3;3;3;9;3;3;3;0     
+
+urn:ioos:station:wmo:42361: urn:ioos:sensor:wmo:42361::adcp0:   27.55   -92.49  2010-03-02T16:03Z   3   83.00   317 19.8    -0.5    -1.0                    99  99  99      202 170 216 172                 3;3;3;3;9;3;3;3;0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_22&#34;&gt;Waves&lt;/h2&gt;
+
+&lt;p&gt;Waves data may be reported either using only the list of mandatory fields or by including complete spectral information in the optional fields.&lt;/p&gt;
+
+&lt;p&gt;The spectral information includes spectral energy, directions and polar coordinates at a number of frequencies. The number of frequencies in the spectrum shall be indicated in each data row; the remaining fields shall provide values for each spectral quantity at each frequency. Each spectral quantity shall be expressed as a list of values separated by semicolons within a single pair of commas. (That is, rather than using a separate column for each value, we pack lists of values for the same quantity as a semicolon-delimited string).&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTES:&lt;/strong&gt;
+ - Illustrative example in the simplified case of 3 frequencies (at 0.04, 0.05 and 0.06 Hz) each of bandwidth 0.005 Hz:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;        3,0.04;0.05;0.06,0.005;0.005;0.005 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;The spectral quantities are packed because a assigning a separate column (comma-delimited value) for each number causes the number of columns to exceed the maximum (256) supported by typical spreadsheet applications)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_wave_significant_height (m)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_wave_peak_period (s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_wave_mean_period (s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_swell_wave_significant_height (m)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_swell_wave_period (s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_wind_wave_significant_height (m)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_wind_wave_period (s)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_water_temperature (C)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_wave_to_direction (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_swell_wave_to_direction (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sea_surface_wind_wave_to_direction (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;IOOS Optional fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;number_of_frequencies (count)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;center_frequencies (Hz)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;bandwidths (Hz)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;spectral_energy (m:sup:&lt;code&gt;2&lt;/code&gt;/Hz)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;mean_wave_direction (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;principal_wave_direction (degree)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;polar_coordinate_r1 (1)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;polar_coordinate_r2 (1)&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;calculation_method&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;sampling_rate&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
+as discussed above, &lt;strong&gt;number_of_frequencies&lt;/strong&gt; is an integer, and all the following fields are semicolon-delimited lists each containing that number of elements.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:46088&amp;amp;observedproperty=Currents&amp;amp;responseformat=text/csv&#34;&gt;Sample CSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id,sensor_id,latitude (degree),longitude (degree),date_time,&amp;quot;sea_surface_wave_significant_height (m)&amp;quot;,&amp;quot;sea_surface_wave_peak_period (s)&amp;quot;,&amp;quot;sea_surface_wave_mean_period (s)&amp;quot;,&amp;quot;sea_surface_swell_wave_significant_height (m)&amp;quot;,&amp;quot;sea_surface_swell_wave_period  (s)&amp;quot;,&amp;quot;sea_surface_wind_wave_significant_height  (m)&amp;quot;,&amp;quot;sea_surface_wind_wave_period  (s)&amp;quot;,&amp;quot;sea_water_temperature (c)&amp;quot;,&amp;quot;sea_surface_wave_to_direction (degree)&amp;quot;,&amp;quot;sea_surface_swell_wave_to_direction (degree)&amp;quot;,&amp;quot;sea_surface_wind_wave_to_direction (degree)&amp;quot;,&amp;quot;number of frequencies (count)&amp;quot;,&amp;quot;center frequencies (Hz)&amp;quot;,&amp;quot;bandwidths (Hz)&amp;quot;,&amp;quot;spectral energy (m**2/Hz)&amp;quot;,&amp;quot;mean wave direction (degree)&amp;quot;,&amp;quot;principal wave direction (degree)&amp;quot;,&amp;quot;polar coordinate r1 (1)&amp;quot;,&amp;quot;polar coordinate r2 (1)&amp;quot;,calculation_method,&amp;quot;sampling_rate (Hz)&amp;quot;
+
+urn:ioos:station:wmo:42002:,urn:ioos:sensor:wmo:42002::wpm1:,25.17,-94.42,2008-12-24T04:50:00Z,2.62,7.69,5.79,0.00,0.00,2.62,7.70,,111.0,,111.0,46,0.0325;0.0375;0.0425;0.0475;0.0525;0.0575;0.0625;0.0675;0.0725;0.0775;0.0825;0.0875;0.0925;0.1000;0.1100;0.1200;0.1300;0.1400;0.1500;0.1600;0.1700;0.1800;0.1900;0.2000;0.2100;0.2200;0.2300;0.2400;0.2500;0.2600;0.2700;0.2800;0.2900;0.3000;0.3100;0.3200;0.3300;0.3400;0.3500;0.3650;0.3850;0.4050;0.4250;0.4450;0.4650;0.4850,0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0200;0.0200;0.0200;0.0200;0.0200;0.0200;0.0200,0;0;0;0;0;0;0;0;0;0;0;0;0;0.0822186;1.22307;8.15093;9.32595;3.67259;4.63691;2.07881;1.957;1.36319;1.85478;0.995907;1.30765;0.781963;0.752923;0.907616;0.22676;0.632239;0.323894;0.430227;0.305904;0.295656;0.209008;0.199;0.159108;0.14396;0.126935;0.0803674;0.0732104;0.0557885;0.0367058;0.0182708;0.0189928;0.0254116,104.0;272.0;244.0;134.0;259.0;260.0;218.0;264.0;268.0;91.0;110.0;267.0;70.0;87.0;91.0;108.0;111.0;126.0;121.0;156.0;146.0;157.0;131.0;172.0;153.0;162.0;159.0;163.0;158.0;167.0;160.0;163.0;159.0;155.0;169.0;148.0;162.0;184.0;170.0;184.0;182.0;170.0;189.0;180.0;149.0;1.0,79.0;257.0;248.0;63.0;249.0;243.0;244.0;247.0;262.0;84.0;89.0;258.0;64.0;24.0;62.0;107.0;105.0;193.0;114.0;173.0;145.0;155.0;127.0;196.0;157.0;168.0;169.0;166.0;221.0;185.0;228.0;172.0;187.0;157.0;180.0;137.0;160.0;192.0;178.0;203.0;195.0;181.0;195.0;181.0;178.0;10.0,0.462758;0.365588;0.352569;0.446279;0.525379;0.316228;0.379088;0.525379;0.702193;0.607386;0.641337;0.607386;0.454444;0.365588;0.653071;0.797214;0.78289;0.564896;0.78289;0.702193;0.741445;0.715041;0.872861;0.715041;0.75501;0.797214;0.741445;0.841777;0.430386;0.75501;0.564896;0.728123;0.689577;0.75501;0.741445;0.715041;0.768824;0.78289;0.715041;0.741445;0.75501;0.768824;0.689577;0.677187;0.544779;0.677187,0.689577;0.564896;0.66502;0.340013;0.826652;0.607386;0.618498;0.641337;0.585756;0.415059;0.506669;0.304966;0.446279;0.462758;0.407602;0.372277;0.488626;0.161682;0.488626;0.515939;0.35902;0.186919;0.702193;0.379088;0.299487;0.544779;0.422653;0.575231;0.372277;0.393087;0.268617;0.310546;0.200979;0.365588;0.254397;0.273532;0.316228;0.446279;0.278536;0.497566;0.564896;0.462758;0.400278;0.294106;0.322013;0.446279,,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdf.ndbc.noaa.gov/sos/server.php?request=GetObservation&amp;amp;service=SOS&amp;amp;offering=urn:ioos:station:wmo:42002&amp;amp;observedproperty=waves&amp;amp;responseformat=text/tab-separated-values&#34;&gt;Sample TSV response&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61  sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]  time_ISO8601     sea_surface_wave_significant_height [m]     sea_surface_wave_peak_period [s]    sea_surface_wave_mean_period [s]    sea_surface_swell_wave_significant_height [m]   sea_surface_swell_wave_period  [s]  sea_surface_wind_wave_significant_height  [m]   sea_surface_wind_wave_period  [s]   sea_water_temperature [c]   sea_surface_wave_to_direction [degree]  sea_surface_swell_wave_to_direction [degree]    sea_surface_wind_wave_to_direction [degree]    number of frequencies [count]   center frequencies [Hz] bandwidths [Hz] spectral energy [m**2/Hz]   mean wave direction [degree]    principal wave direction [degree]   polar coordinate r1 [1] polar coordinate r2 [1] calculation_method  sampling_rate [Hz]
+
+urn:ioos:station:wmo:42002: urn:ioos:sensor:wmo:42002::wpm1:    25.17   -94.42  2008-12-24T04:50:00Z    2.62    7.69    5.79    0.00    0.00    2.62    7.70        111.0       111.0   46  0.0325;0.0375;0.0425;0.0475;0.0525;0.0575;0.0625;0.0675;0.0725;0.0775;0.0825;0.0875;0.0925;0.1000;0.1100;0.1200;0.1300;0.1400;0.1500;0.1600;0.1700;0.1800;0.1900;0.2000;0.2100;0.2200;0.2300;0.2400;0.2500;0.2600;0.2700;0.2800;0.2900;0.3000;0.3100;0.3200;0.3300;0.3400;0.3500;0.3650;0.3850;0.4050;0.4250;0.4450;0.4650;0.4850   0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0200;0.0200;0.0200;0.0200;0.0200;0.0200;0.0200   0;0;0;0;0;0;0;0;0;0;0;0;0;0.0822186;1.22307;8.15093;9.32595;3.67259;4.63691;2.07881;1.957;1.36319;1.85478;0.995907;1.30765;0.781963;0.752923;0.907616;0.22676;0.632239;0.323894;0.430227;0.305904;0.295656;0.209008;0.199;0.159108;0.14396;0.126935;0.0803674;0.0732104;0.0557885;0.0367058;0.0182708;0.0189928;0.0254116   104.0;272.0;244.0;134.0;259.0;260.0;218.0;264.0;268.0;91.0;110.0;267.0;70.0;87.0;91.0;108.0;111.0;126.0;121.0;156.0;146.0;157.0;131.0;172.0;153.0;162.0;159.0;163.0;158.0;167.0;160.0;163.0;159.0;155.0;169.0;148.0;162.0;184.0;170.0;184.0;182.0;170.0;189.0;180.0;149.0;1.0   79.0;257.0;248.0;63.0;249.0;243.0;244.0;247.0;262.0;84.0;89.0;258.0;64.0;24.0;62.0;107.0;105.0;193.0;114.0;173.0;145.0;155.0;127.0;196.0;157.0;168.0;169.0;166.0;221.0;185.0;228.0;172.0;187.0;157.0;180.0;137.0;160.0;192.0;178.0;203.0;195.0;181.0;195.0;181.0;178.0;10.0 0.462758;0.365588;0.352569;0.446279;0.525379;0.316228;0.379088;0.525379;0.702193;0.607386;0.641337;0.607386;0.454444;0.365588;0.653071;0.797214;0.78289;0.564896;0.78289;0.702193;0.741445;0.715041;0.872861;0.715041;0.75501;0.797214;0.741445;0.841777;0.430386;0.75501;0.564896;0.728123;0.689577;0.75501;0.741445;0.715041;0.768824;0.78289;0.715041;0.741445;0.75501;0.768824;0.689577;0.677187;0.544779;0.677187  0.689577;0.564896;0.66502;0.340013;0.826652;0.607386;0.618498;0.641337;0.585756;0.415059;0.506669;0.304966;0.446279;0.462758;0.407602;0.372277;0.488626;0.161682;0.488626;0.515939;0.35902;0.186919;0.702193;0.379088;0.299487;0.544779;0.422653;0.575231;0.372277;0.393087;0.268617;0.310546;0.200979;0.365588;0.254397;0.273532;0.316228;0.446279;0.278536;0.497566;0.564896;0.462758;0.400278;0.294106;0.322013;0.446279     
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
