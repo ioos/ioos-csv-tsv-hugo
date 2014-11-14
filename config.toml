@@ -1,4 +1,4 @@
-baseurl = "http://abirger.github.io/ioos-csv-tsv"
+baseurl = "http://ioos.github.io/ioos-csv-tsv"
 contentdir = "content"
 layoutdir = "layouts"
 publishdir = "public"
