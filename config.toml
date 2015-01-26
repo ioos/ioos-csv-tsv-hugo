@@ -1,14 +1,15 @@
 baseurl = "http://ioos.github.io/ioos-csv-tsv"
+CanonifyUrls = true
 contentdir = "content"
 layoutdir = "layouts"
 publishdir = "public"
 languageCode = "en-us"
-Title = "IOOS DMAC"
 [params]
- Description = "CSV/TSV Encoding Convention"
- Copyright = "(C) 2014 U.S. IOOS. Some rights reserved"
-
-
+  Title = "IOOS CSV / TSV Encoding"
+  Tagline = "Convention for observation data encoding"
+[params.Github]
+  Head = "master"
+  Url = "https://github.com/ioos/ioos-csv-tsv"
 	
 	
  

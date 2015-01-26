@@ -1,31 +1,59 @@
-{{ template "chrome/head.html" . }}
-<body>
+{{ partial "default_head.html" . }}
 
-{{ template "chrome/sidebar.html" . }}
-
-    <div class="content container">
-
+  <div class="content container">
 	<div class="posts">
+      <div class="post">
+<!--
+ 	    {{ range first 1 .Data.Pages }}
+           <h2><a href='{{ .Permalink }}'>{{ .Title }}</a> </h2>
+        	{{ if eq .RelPermalink "/animal-telemetry/index.html" }} 
+				{{ .Content }}
+			{{else}}
+				{{ .Summary }} 
+				<footer>
+					<a href='{{ .Permalink }}'><nobr><i>Read more ></i></nobr></a>
+				</footer>
+			{{end}}
+		{{ end }}
+-->
+ 	    {{ range first 1 .Data.Pages }}
+           <h2><a href='{{ .Permalink }}'>{{ .Title }}</a> </h2>
+        	{{ if eq .RelPermalink "/ioos-csv-tsv/index.html" }} 
+				{{ .Content }}
+				<footer>
+					<a href='./csv_tsv_encoding_wiki_v1_1_0/'><nobr><i>Read more ></i></nobr></a>
+				</footer>
+			{{else}}
+				{{ .Summary }} 
+				<footer>
+					<a href='{{ .Permalink }}'><nobr><i>Read more ></i></nobr></a>
+				</footer>
+			{{end}}
+		{{ end }}
+<!--
+ 	    {{ range .Data.Pages }}
+           <h2><a href='{{ .Permalink }}'>{{ .Title }}</a> </h2>
+        	{{ if eq .RelPermalink "/animal-telemetry/index.html" }} 
+				{{ .Content }}
+				<footer>
+					<a href='./animal-telemetry/'><nobr><i>Read more ></i></nobr></a>
+				</footer>
+			{{end}}
+		{{ end }}
+-->
+<!--
+ 	    {{ range .Data.Pages }}
+           <h2><a href='{{ .Permalink }}'>{{ .Title }}</a> </h2>
+        	{{ if eq .RelPermalink "/animal-telemetry/index.html" }} 
+				{{ .Summary }} 
+				<footer>
+					<a href='./animal-telemetry/'><nobr><i>Read more ></i></nobr></a>
+				</footer>
+			{{end}}
+		{{ end }}
+-->		
+ 	  </div>
+    </div>
+  </div>
 
-      {{ range .Data.Pages }}
-  <div class="post">
-
-    <header>
-      <h2><a href='{{ .Permalink }}'> {{ .Title }}</a> </h2>
-      <div class="meta">{{ .Date.Format "Mon, Jan 2, 2006" }}</div>
-    </header>
-
-	{{ .Summary }}
-
-    <footer>
-        <a href='{{ .Permalink }}'><nobr>Read more ></nobr></a>
-    </footer>
-
-	</div>
-
-  {{ end }}
-</div>
-
-
-  </body>
-</html>
+{{ partial "default_foot.html" . }}

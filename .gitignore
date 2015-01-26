@@ -40,6 +40,7 @@ Icon
 # content/**
 css/**
 # layouts/**
+public/**
 # static/**
 temp/**
 # *.toml

@@ -1,26 +1,25 @@
 +++
 draft = false
-title = "IOOS CSV / TSV Encoding"
-subtitle = "IOOS Convention for observation data encoding in CSV/TSV"
+title = "IOOS Convention for observation data encoding in CSV/TSV"
 type = "post"
 date = 2014-08-04T08:10:23Z
-weight = "1"
+sidebar = true
+weight = "20"
 +++
 
-_This document describes the conventions used by the Integrated Ocean Observing System (IOOS) program to encode observation data as plain text Comma-Separated Values (CSV) or Tab-Separated Values (TSV)._
-<!--more-->
+<br>
 
-_CSV means that the data are expressed as a sequence of multiple data values or metadata attributes separated by commas on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. CSV data can be thought of as an array of rows (one per line) and columns (one per value in each line)._
+**CSV** means that the data are expressed as a sequence of multiple data values or metadata attributes separated by commas on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. **CSV** data can be thought of as an array of rows (one per line) and columns (one per value in each line).
 
-_TSV means that the data are expressed as a sequence of multiple data values or metadata attributes separated by tabs (ASCII character 0x09) on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. TSV data can be thought of as an array of rows (one per line) and columns (one per value in each line)._
+**TSV** means that the data are expressed as a sequence of multiple data values or metadata attributes separated by tabs (ASCII character 0x09) on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. **TSV** data can be thought of as an array of rows (one per line) and columns (one per value in each line).
 
-_This document applies to the following **Data Value** types: **Scalar**, **Vector**, **Multivalue**, and **Spectral**. This document applies to the following **Sampling Feature** types: **Point**, **Vertical Profile**, **Horizontal Profile**, **2D Trajectory**, **3D Trajectory**, and **Collection**._
+This document applies to the following **Data Value** types: **Scalar**, **Vector**, **Multivalue**, and **Spectral**. This document applies to the following **Sampling Feature** types: **Point**, **Vertical Profile**, **Horizontal Profile**, **2D Trajectory**, **3D Trajectory**, and **Collection**.
 
 >_**NOTES:**_  
 >  _1. This document does not address conventions for reporting multiple phenomena from different sensors from a single station in a single response. This remains an area to be discussed._ 
 >  _2. This document does not discuss other sampling feature types including regular grids, irregular grids, unstructured grids, or volumetric data. IOOS does not encode such data as CSV or TSV — instead, the binary NetCDF format with CF conventions is used._
 
-_The described conventions are intended to be applied by the IOOS Sensor Observation Service (SOS) instances, but could be used to transmit and store CSV- or TSV-encoded data from other sources as well._ 
+The described conventions are intended to be applied by the IOOS Sensor Observation Service (SOS) instances, but could be used to transmit and store CSV- or TSV-encoded data from other sources as well. 
 <br />
 
 # Revision History #
@@ -186,6 +185,7 @@ Sorting of data from multiple stations, times and depths shall be as follows:
  -  All depths from that time shall be presented in order.
 
 Conceptual illustration:
+
 ```
    Data from Station 1 at time 1 and depth 1
    Data from Station 1 at time 1 and depth 2
@@ -332,10 +332,15 @@ IOOS Optional fields:
 >The **datum_id** is an identifier for the vertical datum to which the water-level measurements are referenced.  Values presently in use at IOOS are:
 >
 >_urn:x-noaa:def:datum:noaa::IGLD (International Great Lakes Datum)_
+>
 >_urn:x-noaa:def:datum:noaa::MHW (mean high water)_
+>
 >_urn:x-noaa:def:datum:noaa::MLLW (mean lower low water)_
+>
 >_urn:x-noaa:def:datum:noaa::MSL (mean sea level)_
+>
 >_urn:ogc:def:datum:epsg::5103 (North American Vertical Datum 1988)_
+>
 >_urn:x-noaa:def:datum:noaa::STND (station datum--values are referenced only to local station)_
 
   [Sample CSV response](http://tbd):
