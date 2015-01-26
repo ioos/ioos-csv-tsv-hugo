@@ -1,61 +1,97 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile"> 
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title> IOOS CSV / TSV Encoding &middot; IOOS DMAC </title>
+  <title>
+    
+      IOOS Convention for observation data encoding in CSV/TSV &middot; IOOS CSV / TSV Encoding
+    
+  </title>
 
   
   <link rel="stylesheet" href="http://ioos.github.io/ioos-csv-tsv/css/poole.css">
   <link rel="stylesheet" href="http://ioos.github.io/ioos-csv-tsv/css/syntax.css">
-  <link rel="stylesheet" href="http://ioos.github.io/ioos-csv-tsv/css/hyde.css">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="http://ioos.github.io/ioos-csv-tsv/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://ioos.github.io/ioos-csv-tsv/assets/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="http://ioos.github.io/ioos-csv-tsv/assets/favicon.ico">
 
   
-  <link href="" rel="alternate" type="application/rss+xml" title="IOOS DMAC" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://ioos.github.io/ioos-csv-tsv/atom.xml">
 </head>
 
-<body>
 
-<div class="sidebar">
-   	<p>  <img src="/ioos-csv-tsv/images/ioos_blue2.png" alt="ho-ho-ho"> </p> 
+  <body>
 
-	<div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <h1>IOOS DMAC</h1>
-      <p class="lead">
-       CSV/TSV Encoding Convention 
-      </p>
-    </div>
+    
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
 
 
-    <ul class="sidebar-nav">
-      <li><a href="http://ioos.github.io">IOOS Home</a> </li>
-	  <li><a href="/ioos-csv-tsv/">CSV/TSV Convention Home</a> </li>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p align="center">&middot; <a href="http://ioos.github.io/" target="_blank">IOOS GitHub Pages</a> &middot; <br>
+	a collection of IOOS documentation and software</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item " href="http://ioos.github.io/ioos-csv-tsv/">Home</a>
+
+
+  <div class="sidebar-item">
+    <p>Documents</p>
+  </div>
+
+<p style="text-align:right"> 
+    
+    
       
-    </ul>
+        <a class="sidebar-nav-item-list " href="http://ioos.github.io/ioos-csv-tsv/index.html">ABOUT: IOOS Convention for observation data encoding in CSV/TSV</a>
+      
+    
+      
+        <a class="sidebar-nav-item-list  active " href="http://ioos.github.io/ioos-csv-tsv/csv_tsv_encoding_wiki_v1_1_0/">IOOS Convention for observation data encoding in CSV/TSV</a>
+      
+    
+</p>
+<p style="text-align:right">
+      
+</p>
 
-	
+    <a class="sidebar-nav-item" href="https://github.com/ioos/ioos-csv-tsv/archive/master.zip">Download</a>
+    <a class="sidebar-nav-item" href="https://github.com/ioos/ioos-csv-tsv">GitHub repository</a>
+    <span class="sidebar-nav-item">Currently on master</span>
+  </nav>
 
-	
-  
+  <div class="sidebar-item">
+    <p>&copy; 2014 U.S. IOOS. Rights reserved</p>
   </div>
 </div>
 
 
-    <div class="content container">
+    
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h2 class="masthead-title">
+		  <a href="http://ioos.github.io/ioos-csv-tsv/" title="Home"> IOOS CSV / TSV Encoding &middot; 
+		  <small>Convention for observation data encoding</small>
+		  <img src="http://ioos.github.io/ioos-csv-tsv/images/ioos_blue2.png" alt="Smiley face" align="right" /></a>
+		  </h2>
+        </div>
+      </div>
+
+      <div class="container content">
+
+
 <div class="post">
-
-  <h1>IOOS CSV / TSV Encoding</h1>
-
+  <h1 class="post-title">IOOS Convention for observation data encoding in CSV/TSV</h1>
     <div id="toc" class="well col-md-4 col-sm-6">
     <nav id="TableOfContents">
 <ul>
@@ -91,16 +127,15 @@
 </ul>
 </nav>
     </div>
+  
 
-      
+<p><br></p>
 
-<p><em>This document describes the conventions used by the Integrated Ocean Observing System (IOOS) program to encode observation data as plain text Comma-Separated Values (CSV) or Tab-Separated Values (TSV).</em></p>
+<p><strong>CSV</strong> means that the data are expressed as a sequence of multiple data values or metadata attributes separated by commas on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. <strong>CSV</strong> data can be thought of as an array of rows (one per line) and columns (one per value in each line).</p>
 
-<p><em>CSV means that the data are expressed as a sequence of multiple data values or metadata attributes separated by commas on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. CSV data can be thought of as an array of rows (one per line) and columns (one per value in each line).</em></p>
+<p><strong>TSV</strong> means that the data are expressed as a sequence of multiple data values or metadata attributes separated by tabs (ASCII character 0x09) on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. <strong>TSV</strong> data can be thought of as an array of rows (one per line) and columns (one per value in each line).</p>
 
-<p><em>TSV means that the data are expressed as a sequence of multiple data values or metadata attributes separated by tabs (ASCII character 0x09) on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. TSV data can be thought of as an array of rows (one per line) and columns (one per value in each line).</em></p>
-
-<p><em>This document applies to the following <strong>Data Value</strong> types: <strong>Scalar</strong>, <strong>Vector</strong>, <strong>Multivalue</strong>, and <strong>Spectral</strong>. This document applies to the following <strong>Sampling Feature</strong> types: <strong>Point</strong>, <strong>Vertical Profile</strong>, <strong>Horizontal Profile</strong>, <strong>2D Trajectory</strong>, <strong>3D Trajectory</strong>, and <strong>Collection</strong>.</em></p>
+<p>This document applies to the following <strong>Data Value</strong> types: <strong>Scalar</strong>, <strong>Vector</strong>, <strong>Multivalue</strong>, and <strong>Spectral</strong>. This document applies to the following <strong>Sampling Feature</strong> types: <strong>Point</strong>, <strong>Vertical Profile</strong>, <strong>Horizontal Profile</strong>, <strong>2D Trajectory</strong>, <strong>3D Trajectory</strong>, and <strong>Collection</strong>.</p>
 
 <blockquote>
 <p><em><strong>NOTES:</strong></em><br />
@@ -108,7 +143,7 @@
  <em>2. This document does not discuss other sampling feature types including regular grids, irregular grids, unstructured grids, or volumetric data. IOOS does not encode such data as CSV or TSV — instead, the binary NetCDF format with CF conventions is used.</em></p>
 </blockquote>
 
-<p><em>The described conventions are intended to be applied by the IOOS Sensor Observation Service (SOS) instances, but could be used to transmit and store CSV- or TSV-encoded data from other sources as well.</em>
+<p>The described conventions are intended to be applied by the IOOS Sensor Observation Service (SOS) instances, but could be used to transmit and store CSV- or TSV-encoded data from other sources as well.
 <br /></p>
 
 <h1 id="toc_0">Revision History</h1>
@@ -188,15 +223,15 @@
 The NDBC SOS server is presently using the HTTP Content-Disposition header to specify a filename and open a dialog box. IOOS is considering conventions to make the resulting filename more reflective of the phenomenon, procedure and time of the data inside.</p>
 </blockquote>
 
-<p>The MIME type of an IOOS CSV response shall be as defined in RFC 4180 (the optional parameter <em><strong>header=present</strong></em> suggested by RFC 4180 is not used. IOOS CSV responses shall contain column headers as described in <a href="#Header_row_and_initial_columns">Header row and initial columns</a> below:</p>
+<p>The MIME type of an IOOS CSV response shall be as defined in RFC 4180 (the optional parameter <em><strong>header=present</strong></em> suggested by RFC 4180 is not used. IOOS CSV responses shall contain column headers as described in <a href="#Header_row_and_initial_columns">Header row and initial columns</a> below:
+<code>
+     text/csv
+</code></p>
 
-<pre><code>     text/csv
-</code></pre>
-
-<p>IOOS TSV files shall use the MIME type registered with the Internet Assigned Numbers Authority <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">IANA-2010, &ldquo;Tab-Separated Values&rdquo;</a>:</p>
-
-<pre><code>     text/tab-separated-values
-</code></pre>
+<p>IOOS TSV files shall use the MIME type registered with the Internet Assigned Numbers Authority <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">IANA-2010, &ldquo;Tab-Separated Values&rdquo;</a>:
+<code>
+     text/tab-separated-values
+</code></p>
 
 <p><a name="Compression"></a></p>
 
@@ -218,10 +253,10 @@ The NDBC SOS server is presently using the HTTP Content-Disposition header to sp
 
 <p>The first line of every IOOS CSV response shall comprise a list of column headers that provide names for the values in the following rows. If a value has a unit, it shall be specified in parentheses after the column name. This line is known as the <strong>header row</strong>. All other lines are referred to as <strong>data rows</strong>.</p>
 
-<p>The first several fields of the <strong>header row</strong> shall be, in this order:</p>
-
-<pre><code>station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (m)
-</code></pre>
+<p>The first several fields of the <strong>header row</strong> shall be, in this order:
+<code>
+station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (m)
+</code></p>
 
 <p>The initial fields of each data row shall provide values for these quantities as follows:</p>
 
@@ -255,10 +290,10 @@ The NDBC SOS server is presently using the HTTP Content-Disposition header to sp
 
 <p>The first line of every IOOS TSV response shall comprise a list of column headers that provide names for the values in the following rows separated by a single tab. If a value has a unit, it shall be specified in square brackets [] at the end of the column name (no text is permitted after the closing bracket). This line is known as the <strong>header row.</strong> All other lines are referred to as <strong>data rows</strong>.</p>
 
-<p>The first several fields of the <strong>header row</strong> shall be, in this order:</p>
-
-<pre><code>station_id:METAVAR:TEXT:61   sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]   time_ISO8601   depth [m]
-</code></pre>
+<p>The first several fields of the <strong>header row</strong> shall be, in this order:
+<code>
+station_id:METAVAR:TEXT:61   sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]   time_ISO8601   depth [m]
+</code></p>
 
 <p>The initial fields of each data row shall provide values for these quantities as follows:</p>
 
@@ -493,12 +528,17 @@ urn:ioos:station:wmo:46403: urn:ioos:sensor:wmo:46403::tsunameter0: 52.65   -156
 <p><strong>NOTE:</strong>
 The <strong>datum_id</strong> is an identifier for the vertical datum to which the water-level measurements are referenced.  Values presently in use at IOOS are:</p>
 
-<p><em>urn:x-noaa:def:datum:noaa::IGLD (International Great Lakes Datum)</em>
-<em>urn:x-noaa:def:datum:noaa::MHW (mean high water)</em>
-<em>urn:x-noaa:def:datum:noaa::MLLW (mean lower low water)</em>
-<em>urn:x-noaa:def:datum:noaa::MSL (mean sea level)</em>
-<em>urn:ogc:def:datum:epsg::5103 (North American Vertical Datum 1988)</em>
-<em>urn:x-noaa:def:datum:noaa::STND (station datum&ndash;values are referenced only to local station)</em></p>
+<p><em>urn:x-noaa:def:datum:noaa::IGLD (International Great Lakes Datum)</em></p>
+
+<p><em>urn:x-noaa:def:datum:noaa::MHW (mean high water)</em></p>
+
+<p><em>urn:x-noaa:def:datum:noaa::MLLW (mean lower low water)</em></p>
+
+<p><em>urn:x-noaa:def:datum:noaa::MSL (mean sea level)</em></p>
+
+<p><em>urn:ogc:def:datum:epsg::5103 (North American Vertical Datum 1988)</em></p>
+
+<p><em>urn:x-noaa:def:datum:noaa::STND (station datum&ndash;values are referenced only to local station)</em></p>
 </blockquote>
 
 <p><a href="http://tbd">Sample CSV response</a>:</p>
@@ -668,16 +708,11 @@ urn:ioos:station:wmo:42361: urn:ioos:sensor:wmo:42361::adcp0:   27.55   -92.49  
 
 <blockquote>
 <p><strong>NOTES:</strong>
- - Illustrative example in the simplified case of 3 frequencies (at 0.04, 0.05 and 0.06 Hz) each of bandwidth 0.005 Hz:</p>
-</blockquote>
-
-<pre><code>        3,0.04;0.05;0.06,0.005;0.005;0.005 
-</code></pre>
-
-<blockquote>
-<ul>
-<li>The spectral quantities are packed because a assigning a separate column (comma-delimited value) for each number causes the number of columns to exceed the maximum (256) supported by typical spreadsheet applications)</li>
-</ul>
+ - Illustrative example in the simplified case of 3 frequencies (at 0.04, 0.05 and 0.06 Hz) each of bandwidth 0.005 Hz:
+<code>
+        3,0.04;0.05;0.06,0.005;0.005;0.005 
+</code>
+ - The spectral quantities are packed because a assigning a separate column (comma-delimited value) for each number causes the number of columns to exceed the maximum (256) supported by typical spreadsheet applications)</p>
 </blockquote>
 
 <p>IOOS Mandatory fields:</p>
@@ -731,7 +766,15 @@ urn:ioos:station:wmo:42002: urn:ioos:sensor:wmo:42002::wpm1:    25.17   -94.42  
 </code></pre>
 
 </div>
-</div>
+
+
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
   </body>
 </html>
+

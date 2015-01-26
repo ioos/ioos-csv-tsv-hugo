@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Recent Content on IOOS DMAC </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <title> </title>
     <link>http://ioos.github.io/ioos-csv-tsv/index.xml/</link>
     <language>en-us</language>
+    <author></author>
+    <rights>(C) 2014</rights>
+    <updated>2014-08-04 07:56:39 &#43;0000 UTC</updated>
+
     
-    
-    <updated>Mon, 04 Aug 2014 08:10:23 UTC</updated>
-    
-    <item>
-      <title>IOOS CSV / TSV Encoding</title>
-      <link>http://ioos.github.io/ioos-csv-tsv/doc/csv_tsv_encoding_wiki_v1_1_0/</link>
-      <pubDate>Mon, 04 Aug 2014 08:10:23 UTC</pubDate>
       
-      <guid>http://ioos.github.io/ioos-csv-tsv/doc/csv_tsv_encoding_wiki_v1_1_0/</guid>
-      <description>
+        <item>
+          <title>ABOUT: IOOS Convention for observation data encoding in CSV/TSV</title>
+          <link>http://ioos.github.io/ioos-csv-tsv/index.html</link>
+          <pubDate>Mon, 04 Aug 2014 07:56:39 UTC</pubDate>
+          <author></author>
+          <guid>http://ioos.github.io/ioos-csv-tsv/index.html</guid>
+          <description>&lt;!-- For a single homepage put in FrontMatter url = &#34;index.html&#34; --&gt;
 
-&lt;p&gt;&lt;em&gt;This document describes the conventions used by the Integrated Ocean Observing System (IOOS) program to encode observation data as plain text Comma-Separated Values (CSV) or Tab-Separated Values (TSV).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This document describes the conventions used by the Integrated Ocean Observing System (IOOS) program to encode observation data as plain text &lt;strong&gt;Comma-Separated Values (CSV)&lt;/strong&gt; or &lt;strong&gt;Tab-Separated Values (TSV)&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+      
+    
+      
+        <item>
+          <title>IOOS Convention for observation data encoding in CSV/TSV</title>
+          <link>http://ioos.github.io/ioos-csv-tsv/csv_tsv_encoding_wiki_v1_1_0/</link>
+          <pubDate>Mon, 04 Aug 2014 08:10:23 UTC</pubDate>
+          <author></author>
+          <guid>http://ioos.github.io/ioos-csv-tsv/csv_tsv_encoding_wiki_v1_1_0/</guid>
+          <description>
 
-&lt;p&gt;&lt;em&gt;CSV means that the data are expressed as a sequence of multiple data values or metadata attributes separated by commas on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. CSV data can be thought of as an array of rows (one per line) and columns (one per value in each line).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;TSV means that the data are expressed as a sequence of multiple data values or metadata attributes separated by tabs (ASCII character 0x09) on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. TSV data can be thought of as an array of rows (one per line) and columns (one per value in each line).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CSV&lt;/strong&gt; means that the data are expressed as a sequence of multiple data values or metadata attributes separated by commas on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. &lt;strong&gt;CSV&lt;/strong&gt; data can be thought of as an array of rows (one per line) and columns (one per value in each line).&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;This document applies to the following &lt;strong&gt;Data Value&lt;/strong&gt; types: &lt;strong&gt;Scalar&lt;/strong&gt;, &lt;strong&gt;Vector&lt;/strong&gt;, &lt;strong&gt;Multivalue&lt;/strong&gt;, and &lt;strong&gt;Spectral&lt;/strong&gt;. This document applies to the following &lt;strong&gt;Sampling Feature&lt;/strong&gt; types: &lt;strong&gt;Point&lt;/strong&gt;, &lt;strong&gt;Vertical Profile&lt;/strong&gt;, &lt;strong&gt;Horizontal Profile&lt;/strong&gt;, &lt;strong&gt;2D Trajectory&lt;/strong&gt;, &lt;strong&gt;3D Trajectory&lt;/strong&gt;, and &lt;strong&gt;Collection&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TSV&lt;/strong&gt; means that the data are expressed as a sequence of multiple data values or metadata attributes separated by tabs (ASCII character 0x09) on a single line of text. Each line of text represents a single point in time and space. Multiple lines are used for additional times or locations. &lt;strong&gt;TSV&lt;/strong&gt; data can be thought of as an array of rows (one per line) and columns (one per value in each line).&lt;/p&gt;
+
+&lt;p&gt;This document applies to the following &lt;strong&gt;Data Value&lt;/strong&gt; types: &lt;strong&gt;Scalar&lt;/strong&gt;, &lt;strong&gt;Vector&lt;/strong&gt;, &lt;strong&gt;Multivalue&lt;/strong&gt;, and &lt;strong&gt;Spectral&lt;/strong&gt;. This document applies to the following &lt;strong&gt;Sampling Feature&lt;/strong&gt; types: &lt;strong&gt;Point&lt;/strong&gt;, &lt;strong&gt;Vertical Profile&lt;/strong&gt;, &lt;strong&gt;Horizontal Profile&lt;/strong&gt;, &lt;strong&gt;2D Trajectory&lt;/strong&gt;, &lt;strong&gt;3D Trajectory&lt;/strong&gt;, and &lt;strong&gt;Collection&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;NOTES:&lt;/strong&gt;&lt;/em&gt;&lt;br /&gt;
@@ -31,7 +46,7 @@
  &lt;em&gt;2. This document does not discuss other sampling feature types including regular grids, irregular grids, unstructured grids, or volumetric data. IOOS does not encode such data as CSV or TSV — instead, the binary NetCDF format with CF conventions is used.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;em&gt;The described conventions are intended to be applied by the IOOS Sensor Observation Service (SOS) instances, but could be used to transmit and store CSV- or TSV-encoded data from other sources as well.&lt;/em&gt;
+&lt;p&gt;The described conventions are intended to be applied by the IOOS Sensor Observation Service (SOS) instances, but could be used to transmit and store CSV- or TSV-encoded data from other sources as well.
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;toc_0&#34;&gt;Revision History&lt;/h1&gt;
@@ -111,15 +126,15 @@
 The NDBC SOS server is presently using the HTTP Content-Disposition header to specify a filename and open a dialog box. IOOS is considering conventions to make the resulting filename more reflective of the phenomenon, procedure and time of the data inside.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;The MIME type of an IOOS CSV response shall be as defined in RFC 4180 (the optional parameter &lt;em&gt;&lt;strong&gt;header=present&lt;/strong&gt;&lt;/em&gt; suggested by RFC 4180 is not used. IOOS CSV responses shall contain column headers as described in &lt;a href=&#34;#Header_row_and_initial_columns&#34;&gt;Header row and initial columns&lt;/a&gt; below:&lt;/p&gt;
+&lt;p&gt;The MIME type of an IOOS CSV response shall be as defined in RFC 4180 (the optional parameter &lt;em&gt;&lt;strong&gt;header=present&lt;/strong&gt;&lt;/em&gt; suggested by RFC 4180 is not used. IOOS CSV responses shall contain column headers as described in &lt;a href=&#34;#Header_row_and_initial_columns&#34;&gt;Header row and initial columns&lt;/a&gt; below:
+&lt;code&gt;
+     text/csv
+&lt;/code&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;     text/csv
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;IOOS TSV files shall use the MIME type registered with the Internet Assigned Numbers Authority &lt;a href=&#34;http://www.iana.org/assignments/media-types/text/tab-separated-values&#34;&gt;IANA-2010, &amp;ldquo;Tab-Separated Values&amp;rdquo;&lt;/a&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;     text/tab-separated-values
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;IOOS TSV files shall use the MIME type registered with the Internet Assigned Numbers Authority &lt;a href=&#34;http://www.iana.org/assignments/media-types/text/tab-separated-values&#34;&gt;IANA-2010, &amp;ldquo;Tab-Separated Values&amp;rdquo;&lt;/a&gt;:
+&lt;code&gt;
+     text/tab-separated-values
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;Compression&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -141,10 +156,10 @@ The NDBC SOS server is presently using the HTTP Content-Disposition header to sp
 
 &lt;p&gt;The first line of every IOOS CSV response shall comprise a list of column headers that provide names for the values in the following rows. If a value has a unit, it shall be specified in parentheses after the column name. This line is known as the &lt;strong&gt;header row&lt;/strong&gt;. All other lines are referred to as &lt;strong&gt;data rows&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (m)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:
+&lt;code&gt;
+station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (m)
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;The initial fields of each data row shall provide values for these quantities as follows:&lt;/p&gt;
 
@@ -178,10 +193,10 @@ The NDBC SOS server is presently using the HTTP Content-Disposition header to sp
 
 &lt;p&gt;The first line of every IOOS TSV response shall comprise a list of column headers that provide names for the values in the following rows separated by a single tab. If a value has a unit, it shall be specified in square brackets [] at the end of the column name (no text is permitted after the closing bracket). This line is known as the &lt;strong&gt;header row.&lt;/strong&gt; All other lines are referred to as &lt;strong&gt;data rows&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61   sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]   time_ISO8601   depth [m]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:
+&lt;code&gt;
+station_id:METAVAR:TEXT:61   sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]   time_ISO8601   depth [m]
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;The initial fields of each data row shall provide values for these quantities as follows:&lt;/p&gt;
 
@@ -416,12 +431,17 @@ urn:ioos:station:wmo:46403: urn:ioos:sensor:wmo:46403::tsunameter0: 52.65   -156
 &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
 The &lt;strong&gt;datum_id&lt;/strong&gt; is an identifier for the vertical datum to which the water-level measurements are referenced.  Values presently in use at IOOS are:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;urn:x-noaa:def:datum:noaa::IGLD (International Great Lakes Datum)&lt;/em&gt;
-&lt;em&gt;urn:x-noaa:def:datum:noaa::MHW (mean high water)&lt;/em&gt;
-&lt;em&gt;urn:x-noaa:def:datum:noaa::MLLW (mean lower low water)&lt;/em&gt;
-&lt;em&gt;urn:x-noaa:def:datum:noaa::MSL (mean sea level)&lt;/em&gt;
-&lt;em&gt;urn:ogc:def:datum:epsg::5103 (North American Vertical Datum 1988)&lt;/em&gt;
-&lt;em&gt;urn:x-noaa:def:datum:noaa::STND (station datum&amp;ndash;values are referenced only to local station)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;urn:x-noaa:def:datum:noaa::IGLD (International Great Lakes Datum)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;urn:x-noaa:def:datum:noaa::MHW (mean high water)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;urn:x-noaa:def:datum:noaa::MLLW (mean lower low water)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;urn:x-noaa:def:datum:noaa::MSL (mean sea level)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;urn:ogc:def:datum:epsg::5103 (North American Vertical Datum 1988)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;urn:x-noaa:def:datum:noaa::STND (station datum&amp;ndash;values are referenced only to local station)&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://tbd&#34;&gt;Sample CSV response&lt;/a&gt;:&lt;/p&gt;
@@ -591,16 +611,11 @@ urn:ioos:station:wmo:42361: urn:ioos:sensor:wmo:42361::adcp0:   27.55   -92.49  
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;NOTES:&lt;/strong&gt;
- - Illustrative example in the simplified case of 3 frequencies (at 0.04, 0.05 and 0.06 Hz) each of bandwidth 0.005 Hz:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code&gt;        3,0.04;0.05;0.06,0.005;0.005;0.005 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;The spectral quantities are packed because a assigning a separate column (comma-delimited value) for each number causes the number of columns to exceed the maximum (256) supported by typical spreadsheet applications)&lt;/li&gt;
-&lt;/ul&gt;
+ - Illustrative example in the simplified case of 3 frequencies (at 0.04, 0.05 and 0.06 Hz) each of bandwidth 0.005 Hz:
+&lt;code&gt;
+        3,0.04;0.05;0.06,0.005;0.005;0.005 
+&lt;/code&gt;
+ - The spectral quantities are packed because a assigning a separate column (comma-delimited value) for each number causes the number of columns to exceed the maximum (256) supported by typical spreadsheet applications)&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
@@ -653,7 +668,9 @@ urn:ioos:station:wmo:42002:,urn:ioos:sensor:wmo:42002::wpm1:,25.17,-94.42,2008-1
 urn:ioos:station:wmo:42002: urn:ioos:sensor:wmo:42002::wpm1:    25.17   -94.42  2008-12-24T04:50:00Z    2.62    7.69    5.79    0.00    0.00    2.62    7.70        111.0       111.0   46  0.0325;0.0375;0.0425;0.0475;0.0525;0.0575;0.0625;0.0675;0.0725;0.0775;0.0825;0.0875;0.0925;0.1000;0.1100;0.1200;0.1300;0.1400;0.1500;0.1600;0.1700;0.1800;0.1900;0.2000;0.2100;0.2200;0.2300;0.2400;0.2500;0.2600;0.2700;0.2800;0.2900;0.3000;0.3100;0.3200;0.3300;0.3400;0.3500;0.3650;0.3850;0.4050;0.4250;0.4450;0.4650;0.4850   0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0050;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0100;0.0200;0.0200;0.0200;0.0200;0.0200;0.0200;0.0200   0;0;0;0;0;0;0;0;0;0;0;0;0;0.0822186;1.22307;8.15093;9.32595;3.67259;4.63691;2.07881;1.957;1.36319;1.85478;0.995907;1.30765;0.781963;0.752923;0.907616;0.22676;0.632239;0.323894;0.430227;0.305904;0.295656;0.209008;0.199;0.159108;0.14396;0.126935;0.0803674;0.0732104;0.0557885;0.0367058;0.0182708;0.0189928;0.0254116   104.0;272.0;244.0;134.0;259.0;260.0;218.0;264.0;268.0;91.0;110.0;267.0;70.0;87.0;91.0;108.0;111.0;126.0;121.0;156.0;146.0;157.0;131.0;172.0;153.0;162.0;159.0;163.0;158.0;167.0;160.0;163.0;159.0;155.0;169.0;148.0;162.0;184.0;170.0;184.0;182.0;170.0;189.0;180.0;149.0;1.0   79.0;257.0;248.0;63.0;249.0;243.0;244.0;247.0;262.0;84.0;89.0;258.0;64.0;24.0;62.0;107.0;105.0;193.0;114.0;173.0;145.0;155.0;127.0;196.0;157.0;168.0;169.0;166.0;221.0;185.0;228.0;172.0;187.0;157.0;180.0;137.0;160.0;192.0;178.0;203.0;195.0;181.0;195.0;181.0;178.0;10.0 0.462758;0.365588;0.352569;0.446279;0.525379;0.316228;0.379088;0.525379;0.702193;0.607386;0.641337;0.607386;0.454444;0.365588;0.653071;0.797214;0.78289;0.564896;0.78289;0.702193;0.741445;0.715041;0.872861;0.715041;0.75501;0.797214;0.741445;0.841777;0.430386;0.75501;0.564896;0.728123;0.689577;0.75501;0.741445;0.715041;0.768824;0.78289;0.715041;0.741445;0.75501;0.768824;0.689577;0.677187;0.544779;0.677187  0.689577;0.564896;0.66502;0.340013;0.826652;0.607386;0.618498;0.641337;0.585756;0.415059;0.506669;0.304966;0.446279;0.462758;0.407602;0.372277;0.488626;0.161682;0.488626;0.515939;0.35902;0.186919;0.702193;0.379088;0.299487;0.544779;0.422653;0.575231;0.372277;0.393087;0.268617;0.310546;0.200979;0.365588;0.254397;0.273532;0.316228;0.446279;0.278536;0.497566;0.564896;0.462758;0.400278;0.294106;0.322013;0.446279     
 &lt;/code&gt;&lt;/pre&gt;
 </description>
-    </item>
+        </item>
+      
     
+
   </channel>
 </rss>
