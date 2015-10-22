@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> </title>
-    <link>http://ioos.github.io/ioos-csv-tsv/index.xml/</link>
+    <link>http://ioos.github.io/ioos-csv-tsv/</link>
     <language>en-us</language>
     <author></author>
     <rights>(C) 2014</rights>
@@ -49,7 +49,7 @@
 &lt;p&gt;The described conventions are intended to be applied by the IOOS Sensor Observation Service (SOS) instances, but could be used to transmit and store CSV- or TSV-encoded data from other sources as well.
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;toc_0&#34;&gt;Revision History&lt;/h1&gt;
+&lt;h1 id=&#34;revision-history:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Revision History&lt;/h1&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -95,9 +95,9 @@
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;toc_1&#34;&gt;General Encoding Conventions&lt;/h1&gt;
+&lt;h1 id=&#34;general-encoding-conventions:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;General Encoding Conventions&lt;/h1&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;Basic Structure and Conformance with RFC 4180&lt;/h2&gt;
+&lt;h2 id=&#34;basic-structure-and-conformance-with-rfc-4180:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Basic Structure and Conformance with RFC 4180&lt;/h2&gt;
 
 &lt;p&gt;IOOS CSV responses shall use the basic structure defined in IETF RFC 4180, &amp;ldquo;Common Format and MIME Type for Comma-Separated Values (CSV) Files&amp;rdquo; (Shafranovich, 2005), including:
  -  a line break (CR/LF) between each line;
@@ -117,7 +117,7 @@
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_3&#34;&gt;MIME Types&lt;/h2&gt;
+&lt;h2 id=&#34;mime-types:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;MIME Types&lt;/h2&gt;
 
 &lt;p&gt;The MIME type of the response shall be indicated by the originating server using the HTTP Content-Type header.&lt;/p&gt;
 
@@ -138,21 +138,21 @@ The NDBC SOS server is presently using the HTTP Content-Disposition header to sp
 
 &lt;p&gt;&lt;a name=&#34;Compression&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_4&#34;&gt;Compression&lt;/h2&gt;
+&lt;h2 id=&#34;compression:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Compression&lt;/h2&gt;
 
 &lt;p&gt;IOOS servers shall offer uncompressed CSV or TSV. Though not required, servers may offer compressed CSV or TSV as well (using gzip, ZIP, etc.). If the CSV or TSV result is compressed the originating server shall indicate this fact using the HTTP Content-Encoding header. Clients should use the HTTP Accept-Encoding mechanism to request compression if desired, being prepared to handle either compressed or uncompressed responses.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_5&#34;&gt;Number and order of values&lt;/h2&gt;
+&lt;h2 id=&#34;number-and-order-of-values:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Number and order of values&lt;/h2&gt;
 
 &lt;p&gt;Every line in a given CSV or TSV response shall have the same number and order of values, with missing values indicated by an empty field (two commas or tabs respectively) or by agreed-upon terms to indicate missing information (e.g., &lt;strong&gt;missing&lt;/strong&gt; or &lt;strong&gt;N/A&lt;/strong&gt; or &lt;strong&gt;NULL&lt;/strong&gt;) in some cases.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;Header_row_and_initial_columns&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_6&#34;&gt;Header row and initial columns&lt;/h2&gt;
+&lt;h2 id=&#34;header-row-and-initial-columns:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Header row and initial columns&lt;/h2&gt;
 
 &lt;p&gt;The content of this section implies that all data values in a given row are from the same station, sensor, location and time.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_7&#34;&gt;CSV Encoding&lt;/h3&gt;
+&lt;h3 id=&#34;csv-encoding:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;CSV Encoding&lt;/h3&gt;
 
 &lt;p&gt;The first line of every IOOS CSV response shall comprise a list of column headers that provide names for the values in the following rows. If a value has a unit, it shall be specified in parentheses after the column name. This line is known as the &lt;strong&gt;header row&lt;/strong&gt;. All other lines are referred to as &lt;strong&gt;data rows&lt;/strong&gt;.&lt;/p&gt;
 
@@ -189,7 +189,7 @@ station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_8&#34;&gt;TSV Encoding&lt;/h3&gt;
+&lt;h3 id=&#34;tsv-encoding:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;TSV Encoding&lt;/h3&gt;
 
 &lt;p&gt;The first line of every IOOS TSV response shall comprise a list of column headers that provide names for the values in the following rows separated by a single tab. If a value has a unit, it shall be specified in square brackets [] at the end of the column name (no text is permitted after the closing bracket). This line is known as the &lt;strong&gt;header row.&lt;/strong&gt; All other lines are referred to as &lt;strong&gt;data rows&lt;/strong&gt;.&lt;/p&gt;
 
@@ -227,25 +227,25 @@ These fields are named to provide consistency with ODV tools.&lt;/p&gt;
 &lt;p&gt;Depth in meters, positive below the surface of the water.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;toc_9&#34;&gt;Phenomenon-specific columns&lt;/h2&gt;
+&lt;h2 id=&#34;phenomenon-specific-columns:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Phenomenon-specific columns&lt;/h2&gt;
 
 &lt;p&gt;As discussed in &lt;a href=&#34;#Conventions_for_Specific_Observed_Properties&#34;&gt;Conventions for Specific Observed Properties&lt;/a&gt; below, the remaining fields will depend on the phenomenon, data value type, and sampling feature types. In order to ensure compatibility of CSV and TSV encodings from different servers, the ordering of some mandatory fields for each will be specified in this document for various phenomena. Data providers may offer additional fields after the mandatory fields; their order is not specified here but a name shall be provided for every column in the CSV or TSV response.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_10&#34;&gt;Use of CF Names&lt;/h2&gt;
+&lt;h2 id=&#34;use-of-cf-names:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Use of CF Names&lt;/h2&gt;
 
 &lt;p&gt;In the header row, names of data values shall use the &lt;a href=&#34;http://cf-pcmdi.llnl.gov/documents/cf-standard-names/standard-name-table/12/cf-standard-name-table.html&#34;&gt;Climate and Forecast (CF) Standard Names&lt;/a&gt; where possible. The units of the quantity are not required to be the same as the &amp;ldquo;canonical&amp;rdquo; CF unit as long as there is a well-known conversion formula from the specified units to the canonical units. Example: The canonical unit of Temperature in CF is Kelvin, but data may be reported in Celsius.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_11&#34;&gt;Time-dependent metadata&lt;/h2&gt;
+&lt;h2 id=&#34;time-dependent-metadata:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Time-dependent metadata&lt;/h2&gt;
 
 &lt;p&gt;Some types of data may include time-dependent metadata associated with each measurement. Example: data on ocean currents that includes pitch, roll and yaw information for the sensor. The general practice shall be to place the principal data values first in each data row, followed by any associated time-dependent metadata.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_12&#34;&gt;Result Size&lt;/h2&gt;
+&lt;h2 id=&#34;result-size:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Result Size&lt;/h2&gt;
 
 &lt;p&gt;IOOS does not impose limits on the number of lines in the CSV or TSV response or values on each line. However, it is good to remember that common spreadsheet applications have a limit of 256 values per row and 65536 rows per sheet.&lt;/p&gt;
 
 &lt;p&gt;The CSV as well as TSV response may be compressed (see above under &lt;a href=&#34;#Compression&#34;&gt;Compression&lt;/a&gt; to minimize transmitted file size.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_13&#34;&gt;Empty Dataset&lt;/h2&gt;
+&lt;h2 id=&#34;empty-dataset:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Empty Dataset&lt;/h2&gt;
 
 &lt;p&gt;A CSV or TSV response to a valid request that yielded no data at all (e.g., time range or bounding box did not match any stations) shall contain a header row and zero data rows.&lt;/p&gt;
 
@@ -254,7 +254,7 @@ These fields are named to provide consistency with ODV tools.&lt;/p&gt;
 This approach differs from the handling of empty datasets in the IOOS GML case. There, if no data corresponds to a query, an OGC Web Service Exception is returned (i.e., a brief XML document explaining     the nature of the problem). The Empty Dataset response proposed here means these CSV and TSV conventions could be applied regardless of whether the data are served by SOS or obtained through other means.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;toc_14&#34;&gt;Sort Order&lt;/h2&gt;
+&lt;h2 id=&#34;sort-order:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Sort Order&lt;/h2&gt;
 
 &lt;p&gt;Data from multiple times from a single station shall be sorted in order from earliest time to latest time.&lt;/p&gt;
 
@@ -284,7 +284,7 @@ This approach differs from the handling of empty datasets in the IOOS GML case. 
 
 &lt;p&gt;&lt;a name=&#34;Conventions_for_Specific_Observed_Properties&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;toc_15&#34;&gt;Conventions for Specific Observed  Properties&lt;/h1&gt;
+&lt;h1 id=&#34;conventions-for-specific-observed-properties:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Conventions for Specific Observed  Properties&lt;/h1&gt;
 
 &lt;p&gt;In the following, the order and title of each IOOS mandatory column is specified. All mandatory columns must be included (with a null value if needed).&lt;/p&gt;
 
@@ -299,7 +299,7 @@ This approach differs from the handling of empty datasets in the IOOS GML case. 
 A generic document should probably be written for &amp;ldquo;scalars&amp;rdquo; and &amp;ldquo;vectors&amp;rdquo; at &amp;ldquo;points&amp;rdquo; and &amp;ldquo;profiles,&amp;rdquo; omitting conventions for specific observed properties. However, because column order is  important for quantities with multiple data and metadata values on each row, it is difficult to write a general treatment without considering specific phenomena.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;toc_16&#34;&gt;Temperature&lt;/h2&gt;
+&lt;h2 id=&#34;temperature:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Temperature&lt;/h2&gt;
 
 &lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
 
@@ -340,7 +340,7 @@ urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::watertemp1:  30.04   -80.
 urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::watertemp1:  30.04   -80.55  2008-08-01T02:50:00Z    0.60    27.60  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;toc_17&#34;&gt;Salinity&lt;/h2&gt;
+&lt;h2 id=&#34;salinity:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Salinity&lt;/h2&gt;
 
 &lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
 
@@ -376,7 +376,7 @@ urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::ct1: 30.04   -80.55  2008
 urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::ct1: 30.04   -80.55  2008-08-01T02:50:00Z    1.00    36.25
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;toc_18&#34;&gt;Sea Floor Depth (Tsunameter Water Level)&lt;/h2&gt;
+&lt;h2 id=&#34;sea-floor-depth-tsunameter-water-level:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Sea Floor Depth (Tsunameter Water Level)&lt;/h2&gt;
 
 &lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
 
@@ -412,7 +412,7 @@ urn:ioos:station:wmo:46403: urn:ioos:sensor:wmo:46403::tsunameter0: 52.65   -156
 urn:ioos:station:wmo:46403: urn:ioos:sensor:wmo:46403::tsunameter0: 52.65   -156.94 2008-07-17T00:30:00Z    4509.435    900
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;toc_19&#34;&gt;Water Surface Height (Tide Gauge Water Level)&lt;/h2&gt;
+&lt;h2 id=&#34;water-surface-height-tide-gauge-water-level:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Water Surface Height (Tide Gauge Water Level)&lt;/h2&gt;
 
 &lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
 
@@ -458,7 +458,7 @@ urn:x-noaa:def:station:NOAA.NOS.CO-OPS::1617433, urn:x-noaa:def:sensor:NOAA.NOS.
 urn:x-noaa:def:station:NOAA.NOS.CO-OPS::1617433  urn:x-noaa:def:sensor:NOAA.NOS.CO-OPS::1617433:A1  20.03658    -155.82936   2010-03-02T13:48:00Z   0.432   urn:x-noaa:def:datum:noaa::MLLW
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;toc_20&#34;&gt;Winds&lt;/h2&gt;
+&lt;h2 id=&#34;winds:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Winds&lt;/h2&gt;
 
 &lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
 
@@ -505,7 +505,7 @@ urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::anemometer1: 30.04   -80.
 urn:ioos:station:wmo:41012: urn:ioos:sensor:wmo:41012::anemometer1: 30.04   -80.55  2008-08-01T02:50:00Z    -5.00   241.0   8.90    10.90
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;toc_21&#34;&gt;Currents&lt;/h2&gt;
+&lt;h2 id=&#34;currents:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Currents&lt;/h2&gt;
 
 &lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
 
@@ -603,7 +603,7 @@ urn:ioos:station:wmo:42361: urn:ioos:sensor:wmo:42361::adcp0:   27.55   -92.49  
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_22&#34;&gt;Waves&lt;/h2&gt;
+&lt;h2 id=&#34;waves:59b61be5aa6d017ac4e58fd371710c49&#34;&gt;Waves&lt;/h2&gt;
 
 &lt;p&gt;Waves data may be reported either using only the list of mandatory fields or by including complete spectral information in the optional fields.&lt;/p&gt;
 
