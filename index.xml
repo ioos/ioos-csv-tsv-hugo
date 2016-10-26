@@ -126,15 +126,15 @@
 The NDBC SOS server is presently using the HTTP Content-Disposition header to specify a filename and open a dialog box. IOOS is considering conventions to make the resulting filename more reflective of the phenomenon, procedure and time of the data inside.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;The MIME type of an IOOS CSV response shall be as defined in RFC 4180 (the optional parameter &lt;em&gt;&lt;strong&gt;header=present&lt;/strong&gt;&lt;/em&gt; suggested by RFC 4180 is not used. IOOS CSV responses shall contain column headers as described in &lt;a href=&#34;#Header_row_and_initial_columns&#34;&gt;Header row and initial columns&lt;/a&gt; below:
-&lt;code&gt;
-     text/csv
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The MIME type of an IOOS CSV response shall be as defined in RFC 4180 (the optional parameter &lt;em&gt;&lt;strong&gt;header=present&lt;/strong&gt;&lt;/em&gt; suggested by RFC 4180 is not used. IOOS CSV responses shall contain column headers as described in &lt;a href=&#34;#Header_row_and_initial_columns&#34;&gt;Header row and initial columns&lt;/a&gt; below:&lt;/p&gt;
 
-&lt;p&gt;IOOS TSV files shall use the MIME type registered with the Internet Assigned Numbers Authority &lt;a href=&#34;http://www.iana.org/assignments/media-types/text/tab-separated-values&#34;&gt;IANA-2010, &amp;ldquo;Tab-Separated Values&amp;rdquo;&lt;/a&gt;:
-&lt;code&gt;
-     text/tab-separated-values
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;     text/csv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;IOOS TSV files shall use the MIME type registered with the Internet Assigned Numbers Authority &lt;a href=&#34;http://www.iana.org/assignments/media-types/text/tab-separated-values&#34;&gt;IANA-2010, &amp;ldquo;Tab-Separated Values&amp;rdquo;&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     text/tab-separated-values
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a name=&#34;Compression&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -156,14 +156,14 @@ The NDBC SOS server is presently using the HTTP Content-Disposition header to sp
 
 &lt;p&gt;The first line of every IOOS CSV response shall comprise a list of column headers that provide names for the values in the following rows. If a value has a unit, it shall be specified in parentheses after the column name. This line is known as the &lt;strong&gt;header row&lt;/strong&gt;. All other lines are referred to as &lt;strong&gt;data rows&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:
-&lt;code&gt;
-station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (m)
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (m)
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The initial fields of each data row shall provide values for these quantities as follows:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;station_id / sensor_id&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;_&lt;strong&gt;station_id / sensor_id&lt;/strong&gt;_&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;URNs as defined in the &lt;a href=&#34;http://ioos.github.io/conventions-for-observing-asset-identifiers&#34;&gt;IOOS Conventions for Observing Asset Identifiers&lt;/a&gt;.&lt;/p&gt;
@@ -175,7 +175,7 @@ station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (
 &lt;p&gt;Latitude and longitude in decimal degrees.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;date_time&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;_&lt;strong&gt;date_time&lt;/strong&gt;_&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Date and time in ISO 8601 format with punctuation (normally yyyy-mm-ddThh:mm:ssZ, with variations for non-specific times, e.g. climatological average of temperature in August regardless of year).&lt;/p&gt;
@@ -193,14 +193,14 @@ station_id, sensor_id, latitude (degree), longitude (degree), date_time, depth (
 
 &lt;p&gt;The first line of every IOOS TSV response shall comprise a list of column headers that provide names for the values in the following rows separated by a single tab. If a value has a unit, it shall be specified in square brackets [] at the end of the column name (no text is permitted after the closing bracket). This line is known as the &lt;strong&gt;header row.&lt;/strong&gt; All other lines are referred to as &lt;strong&gt;data rows&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:
-&lt;code&gt;
-station_id:METAVAR:TEXT:61   sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]   time_ISO8601   depth [m]
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The first several fields of the &lt;strong&gt;header row&lt;/strong&gt; shall be, in this order:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;station_id:METAVAR:TEXT:61   sensor_id:METAVAR:TEXT:61   latitude [degree]   longitude [degree]   time_ISO8601   depth [m]
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The initial fields of each data row shall provide values for these quantities as follows:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;station_id:METAVAR:TEXT:61 / sensor_id:METAVAR:TEXT:61&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;_&lt;strong&gt;station_id:METAVAR:TEXT:61 / sensor_id:METAVAR:TEXT:61&lt;/strong&gt;_&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;represent the &lt;strong&gt;station_id&lt;/strong&gt; and &lt;strong&gt;sensor_id&lt;/strong&gt; with URNs as defined in the &lt;a href=&#34;http://ioos.github.io/conventions-for-observing-asset-identifiers&#34;&gt;IOOS Conventions for Observing Asset Identifiers&lt;/a&gt;.&lt;/p&gt;
@@ -215,7 +215,7 @@ These fields are named to provide consistency with ODV tools.&lt;/p&gt;
 &lt;p&gt;Latitude and longitude in decimal degrees relative to World Geodetic System 1984 (WGS84) coordinate reference system (CRS ID = &lt;strong&gt;urn:ogc:def:crs:epsg::4326&lt;/strong&gt;).&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;time_ISO8601&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;_&lt;strong&gt;time_ISO8601&lt;/strong&gt;_&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Date and time in ISO 8601 format with punctuation (normally &lt;strong&gt;yyyy-mm-ddThh:mm:ssZ&lt;/strong&gt;, with variations for non-specific times, e.g. climatological average of temperature in August regardless of     year).&lt;/p&gt;
@@ -611,11 +611,14 @@ urn:ioos:station:wmo:42361: urn:ioos:sensor:wmo:42361::adcp0:   27.55   -92.49  
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;NOTES:&lt;/strong&gt;
- - Illustrative example in the simplified case of 3 frequencies (at 0.04, 0.05 and 0.06 Hz) each of bandwidth 0.005 Hz:
-&lt;code&gt;
-        3,0.04;0.05;0.06,0.005;0.005;0.005 
-&lt;/code&gt;
- - The spectral quantities are packed because a assigning a separate column (comma-delimited value) for each number causes the number of columns to exceed the maximum (256) supported by typical spreadsheet applications)&lt;/p&gt;
+ - Illustrative example in the simplified case of 3 frequencies (at 0.04, 0.05 and 0.06 Hz) each of bandwidth 0.005 Hz:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        3,0.04;0.05;0.06,0.005;0.005;0.005 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The spectral quantities are packed because a assigning a separate column (comma-delimited value) for each number causes the number of columns to exceed the maximum (256) supported by typical spreadsheet applications)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;IOOS Mandatory fields:&lt;/p&gt;
