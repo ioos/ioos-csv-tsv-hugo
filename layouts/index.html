@@ -16,7 +16,7 @@
 			{{end}}
 		{{ end }}
 -->
- 	    {{ range first 1 .Data.Pages }}
+ 	    {{ range .Data.Pages }}
            <h2><a href='{{ .Permalink }}'>{{ .Title }}</a> </h2>
         	{{ if eq .RelPermalink "/ioos-csv-tsv/index.html" }} 
 				{{ .Content }}
@@ -25,9 +25,11 @@
 				</footer>
 			{{else}}
 				{{ .Summary }} 
-				<footer>
-					<a href='{{ .Permalink }}'><nobr><i>Read more ></i></nobr></a>
-				</footer>
+				{{ if .Truncated }}
+					<footer>
+						<a href='{{ .Permalink }}'><nobr><i>Read more ></i></nobr></a>
+					</footer>
+				{{end}}
 			{{end}}
 		{{ end }}
 <!--
